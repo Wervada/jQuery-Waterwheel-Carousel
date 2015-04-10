@@ -346,6 +346,12 @@
 
         data.itemsAnimating++;
 
+        // Fixing z-index problem if there is only 3 items 
+        if ($item.data().oldPosition != 0 && newPosition != 0 && data.items.length === 3) {
+          // Preventing the item from beaing infront of the prev center item in the slide event.
+          $item.data().depth = $item.data().depth - 1;
+        };
+
         $item
           .css('z-index',$item.data().depth)
           // Animate the items to their new position values
